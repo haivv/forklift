@@ -1,0 +1,2 @@
+http://localhost:82/forklift/user/
+http://localhost:82/forklift/user/?username=admin1&password=123
