@@ -8,6 +8,7 @@ $name = $_POST['name'];
 $job = $_POST['job'];
 
 
+
 $result1 = mysqli_query($conn, "SELECT * FROM account WHERE username = '$username'");
 $num1 = mysqli_num_rows( $result1 );
 if ($num1 > 0) {
@@ -37,7 +38,6 @@ else{
 		mysqli_query($conn, "INSERT INTO account (idAcc, username, password, name, job) VALUES ('$idAcc', '$username','$password', '$name', '$job')");
 		$dataToSave = [
             'message' => 'added'
-            
         ];
 
         $jsonString = json_encode( $dataToSave, JSON_PRETTY_PRINT );
@@ -52,6 +52,25 @@ else{
             echo 'user added';
         }
   }
+}
+else{ //empty
+    $idAcc = 1;
+    mysqli_query($conn, "INSERT INTO account (idAcc, username, password, name, job) VALUES ('$idAcc', '$username','$password', '$name', '$job')");
+    $dataToSave = [
+        'message' => 'added'
+    ];
+
+    $jsonString = json_encode( $dataToSave, JSON_PRETTY_PRINT );
+    // You can use JSON_PRETTY_PRINT for pretty formatting
+
+    // Specify the path to the JSON file
+    $jsonFilePath = 'data.json';
+    // Save the JSON string to the file
+    if ( file_put_contents( $jsonFilePath, $jsonString ) ) {
+        echo 'username: added';
+    } else {
+        echo 'user added';
+    }
 } 
 	
 	
